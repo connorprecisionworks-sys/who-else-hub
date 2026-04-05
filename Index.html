@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>W/E Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- DESKTOP SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-logo"><span class="logo-mark">W/E</span><span class="logo-sub">Hub</span></div>
+  <div class="nav-items">
+    <button class="nav-btn active" data-view="home" onclick="nav('home',this)"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></button>
+    <button class="nav-btn" data-view="calendar" onclick="nav('calendar',this)"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Calendar</span></button>
+    <button class="nav-btn" data-view="people" onclick="nav('people',this)"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>People</span></button>
+    <button class="nav-btn" data-view="meetings" onclick="nav('meetings',this)"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Meetings</span></button>
+    <button class="nav-btn" data-view="tasks" onclick="nav('tasks',this)"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>Tasks</span></button>
+    <button class="nav-btn" data-view="notes" onclick="nav('notes',this)"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>Notes</span></button>
+    <button class="nav-btn" data-view="pitch" onclick="nav('pitch',this)"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>Pitch Page</span></button>
+  </div>
+  <div class="sidebar-footer">
+    <div class="area-pips"><span class="ap pip-we"></span><span class="ap pip-consult"></span><span class="ap pip-personal"></span><span class="ap pip-content"></span><span class="ap pip-finance"></span></div>
+  </div>
+</nav>
+
+<!-- MOBILE HEADER -->
+<header class="mob-header">
+  <span class="logo-mark sm">W/E</span>
+  <span class="mob-title" id="mob-title">Home</span>
+  <button class="mob-plus" onclick="openAddMenu()"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+</header>
+
+<!-- ADD MENU -->
+<div class="add-bg hidden" id="add-bg" onclick="closeAddMenu()"></div>
+<div class="add-menu hidden" id="add-menu">
+  <p class="add-menu-head">Add new</p>
+  <button onclick="closeAddMenu();openPanel('event')">📅 Event</button>
+  <button onclick="closeAddMenu();openPanel('task')">✅ Task</button>
+  <button onclick="closeAddMenu();openPanel('reminder')">🔔 Reminder</button>
+  <button onclick="closeAddMenu();openPanel('habit')">⚡ Habit</button>
+  <button onclick="closeAddMenu();openPanel('person')">👤 Person</button>
+  <button onclick="closeAddMenu();openPanel('meeting')">💬 Meeting</button>
+  <button onclick="closeAddMenu();openPanel('note')">📝 Note</button>
+</div>
+
+<!-- MAIN -->
+<main class="main" id="main">
+
+  <!-- HOME -->
+  <div class="view active" id="view-home">
+    <div class="home-wrap">
+      <div class="hero-block">
+        <div class="hero-time" id="hero-time">—</div>
+        <div class="hero-date" id="hero-date"></div>
+      </div>
+      <div class="alert hidden" id="overdue-alert"><span id="overdue-text"></span><button onclick="nav('tasks',null)">View →</button></div>
+      <section class="hs" id="sec-today">
+        <div class="hs-head"><span class="hs-label">Today</span><button class="ghost" onclick="openPanel('event')">+ Event</button></div>
+        <div id="home-today"></div>
+      </section>
+      <section class="hs" id="sec-focus">
+        <div class="hs-head"><span class="hs-label">Focus</span><button class="ghost" onclick="openPanel('task')">+ Task</button></div>
+        <div id="home-focus"></div>
+      </section>
+      <section class="hs" id="sec-habits">
+        <div class="hs-head"><span class="hs-label">Habits</span><button class="ghost" onclick="openPanel('habit')">+ Habit</button></div>
+        <div id="home-habits"></div>
+      </section>
+      <section class="hs" id="sec-reminders">
+        <div class="hs-head"><span class="hs-label">Reminders</span><button class="ghost" onclick="openPanel('reminder')">+ Add</button></div>
+        <div id="home-reminders"></div>
+      </section>
+      <section class="hs" id="sec-upcoming">
+        <div class="hs-head"><span class="hs-label">Coming up</span><button class="ghost" onclick="nav('calendar',null)">Calendar →</button></div>
+        <div id="home-upcoming"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- CALENDAR -->
+  <div class="view" id="view-calendar">
+    <div class="view-bar">
+      <div class="vb-left"><button class="icon-btn" onclick="calNav(-1)">‹</button><button class="icon-btn" onclick="calNav(1)">›</button><span class="vb-title" id="cal-title"></span><button class="ghost" onclick="calToday()">Today</button></div>
+      <div class="vb-right"><div class="seg-ctrl"><button class="seg active" id="seg-month" onclick="setCalView('month',this)">Month</button><button class="seg" id="seg-week" onclick="setCalView('week',this)">Week</button></div><button class="primary-btn" onclick="openPanel('event')">+ Event</button></div>
+    </div>
+    <div class="cal-legend"><span class="cl-item"><span class="cl-pip pip-we"></span>Who Else</span><span class="cl-item"><span class="cl-pip pip-consult"></span>Consulting</span><span class="cl-item"><span class="cl-pip pip-personal"></span>Personal</span><span class="cl-item"><span class="cl-pip pip-content"></span>Content</span><span class="cl-item"><span class="cl-pip pip-finance"></span>Finance</span></div>
+    <div id="cal-body"></div>
+  </div>
+
+  <!-- PEOPLE -->
+  <div class="view" id="view-people">
+    <div class="view-bar"><span class="vb-title">People</span><div class="vb-right"><input class="sbox" type="text" placeholder="Search…" oninput="filterPeople(this.value)" id="people-search"><button class="primary-btn" onclick="openPanel('person')">+ Add</button></div></div>
+    <div class="seg-row" id="ppl-segs"><button class="seg active" onclick="setPeopleFilter('all',this)">All</button><button class="seg" onclick="setPeopleFilter('student',this)">Students</button><button class="seg" onclick="setPeopleFilter('teacher',this)">Teachers</button><button class="seg" onclick="setPeopleFilter('waitlist',this)">Waitlist</button></div>
+    <div class="people-grid" id="people-grid"></div>
+  </div>
+
+  <!-- MEETINGS -->
+  <div class="view" id="view-meetings">
+    <div class="view-bar"><span class="vb-title">Meetings</span><button class="primary-btn" onclick="openPanel('meeting')">+ Schedule</button></div>
+    <div class="seg-row" id="mtg-segs"><button class="seg active" onclick="setMeetingFilter('upcoming',this)">Upcoming</button><button class="seg" onclick="setMeetingFilter('all',this)">All</button><button class="seg" onclick="setMeetingFilter('past',this)">Past</button></div>
+    <div id="meetings-list"></div>
+  </div>
+
+  <!-- TASKS -->
+  <div class="view" id="view-tasks">
+    <div class="view-bar"><span class="vb-title">Tasks</span><div class="vb-right"><button class="primary-btn" onclick="openPanel('task')">+ Task</button><button class="outline-btn" onclick="openPanel('reminder')">+ Reminder</button></div></div>
+    <div class="seg-row" id="task-segs"><button class="seg active" onclick="setTaskFilter('active',this)">Active</button><button class="seg" onclick="setTaskFilter('today',this)">Today</button><button class="seg" onclick="setTaskFilter('overdue',this)">Overdue</button><button class="seg" onclick="setTaskFilter('done',this)">Done</button></div>
+    <div id="tasks-list"></div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="view" id="view-notes">
+    <div class="view-bar"><span class="vb-title">Notes</span><button class="primary-btn" onclick="openPanel('note')">+ Note</button></div>
+    <div class="notes-grid" id="notes-grid"></div>
+  </div>
+
+  <!-- PITCH -->
+  <div class="view" id="view-pitch">
+    <div class="pitch-wrap">
+      <div class="pitch-hero"><div class="pitch-eye">Faith + Founders</div><h1 id="p-name">Who Else</h1><p id="p-tagline">The student innovation collective at the intersection of faith, technology, and the next generation.</p><p class="pitch-pow" id="p-powered">Powered by Genesis Studios @ Austin Christian University</p></div>
+      <div class="pitch-grid">
+        <div class="pc pw"><div class="pc-lbl">The Question</div><div class="pc-quote" id="p-question">"Who else should be trusted to pioneer the future of technology?"</div><div class="pc-sub" id="p-question-sub">This isn't rhetorical. It's a selection mechanism. Who Else identifies the young founders who answer that question with their work — not their words.</div></div>
+        <div class="pc"><div class="pc-lbl">What We Are</div><div class="pc-body" id="p-mission">A high-agency cohort of high school builders who don't wait for permission to ship.</div></div>
+        <div class="pc"><div class="pc-lbl">The Infrastructure</div><div class="pc-body" id="p-infra">Genesis Studios at ACU provides the capital, mentorship, network, and institutional credibility.</div></div>
+        <div class="pc"><div class="pc-lbl">Who Should Join</div><ul class="pc-list" id="p-who"></ul></div>
+        <div class="pc"><div class="pc-lbl">What Members Get</div><ul class="pc-list" id="p-offers"></ul></div>
+        <div class="pc pw pc-dark"><div class="pc-lbl" style="color:rgba(255,255,255,0.4)">For Teachers & Partners</div><div class="pc-body" id="p-teachers-msg" style="color:rgba(255,255,255,0.85)">We partner with schools and churches to bring Who Else to your students. At no cost to them.</div><div class="pc-cta"><span id="p-email" class="pc-email">whoelse@genesistudios.com</span><button class="pc-join" onclick="openWaitlistModal()">Join Waitlist →</button></div></div>
+      </div>
+      <div class="pitch-stats"><div class="ps"><span id="p-students">0</span><small>Students</small></div><div class="ps"><span id="p-teachers-c">0</span><small>Advisors</small></div><div class="ps"><span id="p-waitlist-c">0</span><small>Waitlist</small></div><div class="ps"><span id="p-meetings-c">0</span><small>Meetings</small></div></div>
+      <div style="text-align:center;margin-top:20px"><button class="ghost" onclick="openPortfolioEditor()">Edit pitch page</button></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="bot-nav">
+  <button class="bot-btn active" data-view="home" onclick="nav('home',this)"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>Home</span></button>
+  <button class="bot-btn" data-view="calendar" onclick="nav('calendar',this)"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Cal</span></button>
+  <button class="bot-btn" data-view="people" onclick="nav('people',this)"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span>People</span></button>
+  <button class="bot-btn" data-view="tasks" onclick="nav('tasks',this)"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>Tasks</span></button>
+  <button class="bot-btn" data-view="meetings" onclick="nav('meetings',this)"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Meet</span></button>
+</nav>
+
+<!-- SIDE PANEL -->
+<div class="panel-overlay" id="panel-overlay" onclick="closePanel()"></div>
+<aside class="side-panel" id="side-panel">
+  <div class="panel-head"><span id="panel-title"></span><button class="icon-btn" onclick="closePanel()">✕</button></div>
+  <div class="panel-body" id="panel-body"></div>
+</aside>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+  <div class="modal-head"><span id="modal-title"></span><button class="icon-btn" onclick="closeModal()">✕</button></div>
+  <div class="modal-body" id="modal-body"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="data.js"></script>
+<script src="calendar.js"></script>
+<script src="home.js"></script>
+<script src="people.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
