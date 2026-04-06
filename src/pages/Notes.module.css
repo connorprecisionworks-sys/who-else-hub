@@ -1,0 +1,15 @@
+.wrap { padding: 28px; }
+.bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; }
+.primaryBtn { padding: 7px 14px; border: none; border-radius: var(--r-sm); background: var(--accent); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; }
+.primaryBtn:hover { opacity: 0.8; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 16px; cursor: pointer; transition: box-shadow 0.15s; }
+.card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.07); }
+.cardTitle { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+.cardBody { font-size: 13px; color: var(--t2); line-height: 1.55; white-space: pre-wrap; }
+.cardFoot { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+.cardDate { font-size: 11px; color: var(--t3); font-family: 'DM Mono', monospace; }
+.areaChip { font-size: 10px; padding: 2px 7px; border-radius: 10px; font-family: 'DM Mono', monospace; }
+.personChip { font-size: 11px; color: var(--t3); }
+@media (max-width: 768px) { .wrap { padding: 16px; } .grid { grid-template-columns: 1fr; } }

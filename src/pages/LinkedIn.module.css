@@ -1,0 +1,99 @@
+.wrap { padding: 28px; max-width: 860px; }
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; }
+.sub { font-size: 12px; color: var(--t3); margin-top: 2px; }
+
+.openLiBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--r-sm);
+  background: #0077b5;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.12s;
+  flex-shrink: 0;
+}
+.openLiBtn:hover { opacity: 0.85; }
+
+.customSearch { margin-bottom: 24px; }
+.searchInput {
+  width: 100%;
+  padding: 11px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.12s;
+}
+.searchInput:focus { border-color: #0077b5; }
+.searchInput::placeholder { color: var(--t3); }
+
+.group { margin-bottom: 24px; }
+.groupLabel {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--t3);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 8px;
+}
+
+.linkCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.12s;
+  font-family: 'DM Sans', sans-serif;
+}
+.linkCard:hover {
+  border-color: #0077b5;
+  box-shadow: 0 2px 8px rgba(0,119,181,0.08);
+}
+
+.linkIcon { font-size: 18px; flex-shrink: 0; }
+.linkBody { flex: 1; }
+.linkLabel { font-size: 13px; font-weight: 500; color: var(--text); }
+.linkDesc { font-size: 11px; color: var(--t3); margin-top: 2px; }
+.arrow { font-size: 14px; color: var(--t3); flex-shrink: 0; }
+
+.note {
+  margin-top: 8px;
+  padding: 14px 16px;
+  background: var(--accent-soft);
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  color: var(--t2);
+  line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+  .wrap { padding: 16px; }
+  .grid { grid-template-columns: 1fr; }
+}
