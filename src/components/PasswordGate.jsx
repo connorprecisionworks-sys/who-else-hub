@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import styles from './PasswordGate.module.css'
 
-const PASSWORD = import.meta.env.VITE_APP_PASSWORD
+const PASSWORD = import.meta.env.VITE_APP_PASSWORD || 'whoelse2026'
 const SESSION_KEY = 'we_hub_auth'
 
 export function useAuth() {
