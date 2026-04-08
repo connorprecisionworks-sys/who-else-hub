@@ -5,27 +5,48 @@ import styles from './People.module.css'
 
 function PersonForm({ person, people, meetings, notes, store, onClose }) {
   const isEdit = !!person
-  const [f, setF] = useState({
-    name: person?.name || '', role: person?.role || 'student',
-    school: person?.school || '', grade: person?.grade || '',
-    contact: person?.contact || '', idea: person?.idea || '',
-    lastTopic: person?.lastTopic || '', notes: person?.notes || '',
+  const [saved, setSaved] = useState(false)
+  const [f, setF] = useState(() => {
+    if (!person) return { name: '', role: 'student', school: '', grade: '', contact: '', idea: '', lastTopic: '', notes: '' }
+    return {
+      name: person.name || '', role: person.role || 'student',
+      school: person.school || '', grade: person.grade || '',
+      contact: person.contact || '', idea: person.idea || '',
+      lastTopic: person.lastTopic || '', notes: person.notes || '',
+    }
   })
   const s = (k) => (e) => setF(p => ({ ...p, [k]: e.target.value }))
 
   const save = () => {
     if (!f.name) return
-    isEdit ? store.updatePerson(person.id, f) : store.addPerson(f)
-    onClose()
+    if (isEdit) {
+      store.updatePerson(person.id, { ...person, ...f })
+    } else {
+      store.addPerson(f)
+    }
+    setSaved(true)
+    setTimeout(() => { setSaved(false); onClose() }, 600)
   }
   const del = () => { if (confirm('Delete?')) { store.deletePerson(person.id); onClose() } }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+      e.preventDefault()
+      const inputs = e.target.closest('form, [role="form"], aside')?.querySelectorAll('input, select, textarea')
+      if (inputs) {
+        const arr = Array.from(inputs)
+        const idx = arr.indexOf(e.target)
+        if (idx < arr.length - 1) arr[idx + 1].focus()
+        else save()
+      }
+    }
+  }
+
   const personMeetings = isEdit ? meetings.filter(m => (m.peopleIds || []).includes(person.id)) : []
-  const personNotes = isEdit ? notes.filter(n => n.personId === person.id) : []
 
   return (
-    <>
-      <Field label="Name *"><Input value={f.name} onChange={s('name')} placeholder="Full name" /></Field>
+    <div onKeyDown={handleKeyDown}>
+      <Field label="Name *"><Input value={f.name} onChange={s('name')} placeholder="Full name" autoFocus={!isEdit} /></Field>
       <Field label="Role">
         <Select value={f.role} onChange={s('role')}>
           <option value="student">Student</option>
@@ -46,22 +67,41 @@ function PersonForm({ person, people, meetings, notes, store, onClose }) {
           <div className={styles.detailTags}>{personMeetings.map(m => <span key={m.id} className={styles.tag}>{m.title}{m.date ? ' · ' + formatDateShort(m.date) : ''}</span>)}</div>
         </Field>
       )}
-      <SaveBtn onClick={save} />
-      {isEdit && <DelBtn onClick={del} />}
-    </>
+      {saved
+        ? <div style={{ padding: '8px 0', color: '#166534', fontSize: 13, fontFamily: "'DM Mono', monospace" }}>Saved</div>
+        : <SaveBtn onClick={save} />
+      }
+      {isEdit && !saved && <DelBtn onClick={del} />}
+    </div>
   )
 }
+
+const SORT_KEY = 'we_hub_people_sort'
 
 export default function People({ store, panelOpen, panelId, onClosePanel }) {
   const [filter, setFilter] = useState('all')
   const [search, setSearch] = useState('')
+  const [sort, setSort] = useState(() => {
+    try { return localStorage.getItem(SORT_KEY) || 'newest' } catch { return 'newest' }
+  })
 
-  let people = store.people
+  const changeSort = (s) => {
+    setSort(s)
+    try { localStorage.setItem(SORT_KEY, s) } catch {}
+  }
+
+  let people = [...store.people]
   if (filter !== 'all') people = people.filter(p => p.role === filter)
   if (search) people = people.filter(p =>
     p.name.toLowerCase().includes(search.toLowerCase()) ||
     p.school?.toLowerCase().includes(search.toLowerCase())
   )
+
+  if (sort === 'az') people.sort((a, b) => a.name.localeCompare(b.name))
+  else if (sort === 'za') people.sort((a, b) => b.name.localeCompare(a.name))
+  else if (sort === 'newest') people.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
+  else if (sort === 'oldest') people.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0))
+  else if (sort === 'role') people.sort((a, b) => (a.role || '').localeCompare(b.role || ''))
 
   const editPerson = panelId ? store.people.find(p => p.id === panelId) : null
 
@@ -78,12 +118,21 @@ export default function People({ store, panelOpen, panelId, onClosePanel }) {
         </div>
       </div>
 
-      <div className={styles.segs}>
-        {['all','student','teacher','waitlist'].map(f => (
-          <button key={f} className={`${styles.seg} ${filter === f ? styles.segActive : ''}`} onClick={() => setFilter(f)}>
-            {f === 'all' ? 'All' : f === 'student' ? 'Students' : f === 'teacher' ? 'Teachers' : 'Waitlist'}
-          </button>
-        ))}
+      <div className={styles.filterRow}>
+        <div className={styles.segs}>
+          {['all','student','teacher','waitlist'].map(f => (
+            <button key={f} className={`${styles.seg} ${filter === f ? styles.segActive : ''}`} onClick={() => setFilter(f)}>
+              {f === 'all' ? 'All' : f === 'student' ? 'Students' : f === 'teacher' ? 'Teachers' : 'Waitlist'}
+            </button>
+          ))}
+        </div>
+        <select className={styles.sortSelect} value={sort} onChange={e => changeSort(e.target.value)}>
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="az">Name A–Z</option>
+          <option value="za">Name Z–A</option>
+          <option value="role">By role</option>
+        </select>
       </div>
 
       <div className={styles.grid}>

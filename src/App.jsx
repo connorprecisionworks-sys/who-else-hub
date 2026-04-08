@@ -15,6 +15,13 @@ import Notes from './pages/Notes'
 import Pitch from './pages/Pitch'
 import MeetingMode from './pages/MeetingMode'
 import LinkedIn from './pages/LinkedIn'
+import Agents from './pages/Agents'
+import Projects from './pages/Projects'
+import Ideas from './pages/Ideas'
+import ContentPipeline from './pages/ContentPipeline'
+import AITools from './pages/AITools'
+import EmailSnapshot from './pages/EmailSnapshot'
+import Assistant from './components/Assistant'
 
 function HabitForm({ store, onClose }) {
   const [f, setF] = useState({ name: '', icon: '', recur: 'daily' })
@@ -29,10 +36,9 @@ function HabitForm({ store, onClose }) {
   )
 }
 
-function AppInner() {
+function AppInner({ lock }) {
   const store = useStore()
   const navigate = useNavigate()
-  const { lock } = useAuth()
 
   const [quickPanel, setQuickPanel] = useState({ open: false, type: null })
   const closeQuick = useCallback(() => setQuickPanel({ open: false, type: null }), [])
@@ -47,6 +53,7 @@ function AppInner() {
   const [meetPanel, setMeetPanel]   = useState({ open: false, id: null })
   const [taskPanel, setTaskPanel]   = useState({ open: false, type: 'task', id: null })
   const [notePanel, setNotePanel]   = useState({ open: false, id: null })
+  const [projPanel, setProjPanel]   = useState({ open: false, id: null })
 
   return (
     <>
@@ -59,7 +66,13 @@ function AppInner() {
           <Route path="/tasks"        element={<Tasks store={store} panelOpen={taskPanel.open} panelType={taskPanel.type} panelId={taskPanel.id} onOpenPanel={(type, id) => setTaskPanel({ open: true, type, id })} onClosePanel={() => setTaskPanel({ open: false, type: 'task', id: null })} />} />
           <Route path="/notes"        element={<Notes store={store} panelOpen={notePanel.open} panelId={notePanel.id} onOpenPanel={id => setNotePanel({ open: true, id })} onClosePanel={() => setNotePanel({ open: false, id: null })} />} />
           <Route path="/pitch"        element={<Pitch store={store} />} />
+          <Route path="/projects"     element={<Projects store={store} panelOpen={projPanel.open} panelId={projPanel.id} onOpenPanel={id => setProjPanel({ open: true, id })} onClosePanel={() => setProjPanel({ open: false, id: null })} />} />
+          <Route path="/ideas"       element={<Ideas store={store} />} />
+          <Route path="/content"     element={<ContentPipeline store={store} />} />
           <Route path="/linkedin"     element={<LinkedIn />} />
+          <Route path="/agents"      element={<Agents />} />
+          <Route path="/ai-tools"    element={<AITools />} />
+          <Route path="/email"       element={<EmailSnapshot />} />
           <Route path="/meeting-mode" element={<MeetingMode store={store} />} />
         </Routes>
       </Layout>
@@ -67,13 +80,14 @@ function AppInner() {
       <Panel title={quickPanel.type ? quickPanel.type.charAt(0).toUpperCase() + quickPanel.type.slice(1) : ''} open={quickPanel.open} onClose={closeQuick}>
         {quickPanel.type === 'habit' && <HabitForm store={store} onClose={closeQuick} />}
       </Panel>
+
+      <Assistant />
     </>
   )
 }
 
 export default function App() {
   const { unlocked, unlock, lock } = useAuth()
-  // Everything behind the password — no exceptions
   if (!unlocked) return <PasswordGate onUnlock={unlock} />
-  return <AppInner />
+  return <AppInner lock={lock} />
 }

@@ -1,0 +1,20 @@
+.wrap { padding: 28px; }
+.bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; }
+.section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 12px; overflow: hidden; }
+.sectionHead { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 14px 16px; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: var(--text); cursor: pointer; text-align: left; }
+.sectionHead:hover { background: var(--accent-soft); }
+.chevron { font-size: 12px; color: var(--t3); }
+.sectionBody { padding: 0 16px 16px; }
+.input { width: 100%; min-height: 80px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--r-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; resize: vertical; background: var(--bg); margin-bottom: 10px; }
+.input:focus { outline: none; border-color: var(--border2); }
+.toolRow { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.tones { display: flex; gap: 5px; flex-wrap: wrap; }
+.tonePill { padding: 4px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 12px; font-family: 'DM Sans', sans-serif; cursor: pointer; background: var(--surface); color: var(--t2); transition: all 0.12s; }
+.tonePillActive { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; }
+.runBtn { padding: 7px 16px; border: none; border-radius: var(--r-sm); background: var(--accent); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; flex-shrink: 0; }
+.runBtn:hover { opacity: 0.8; }
+.runBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.output { margin-top: 12px; padding: 12px; background: var(--accent-soft); border: 1px solid var(--border); border-radius: var(--r); font-size: 14px; line-height: 1.6; white-space: pre-wrap; }
+.error { color: #dc2626; font-size: 13px; margin-top: 6px; }
+@media (max-width: 768px) { .wrap { padding: 16px; } .toolRow { flex-direction: column; align-items: flex-start; } }

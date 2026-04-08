@@ -25,6 +25,9 @@ const DEFAULT_STATE = {
   habits: [],
   habitLog: {},
   notes: [],
+  projects: [],
+  ideas: [],
+  contentItems: [],
   portfolio: DEFAULT_PORTFOLIO,
 }
 
@@ -181,6 +184,20 @@ export function useStore() {
   const updateNote = useCallback((id, n) => update('notes', arr => arr.map(x => x.id === id ? { ...x, ...n } : x)), [update])
   const deleteNote = useCallback((id) => update('notes', arr => arr.filter(x => x.id !== id)), [update])
 
+  // Projects
+  const addProject = useCallback((p) => update('projects', arr => [...arr, { ...p, id: uid(), createdAt: Date.now() }]), [update])
+  const updateProject = useCallback((id, p) => update('projects', arr => arr.map(x => x.id === id ? { ...x, ...p } : x)), [update])
+  const deleteProject = useCallback((id) => update('projects', arr => arr.filter(x => x.id !== id)), [update])
+
+  // Ideas
+  const addIdea = useCallback((i) => update('ideas', arr => [...arr, { ...i, id: uid(), createdAt: Date.now() }]), [update])
+  const deleteIdea = useCallback((id) => update('ideas', arr => arr.filter(x => x.id !== id)), [update])
+
+  // Content Items
+  const addContentItem = useCallback((c) => update('contentItems', arr => [...arr, { ...c, id: uid(), createdAt: Date.now() }]), [update])
+  const updateContentItem = useCallback((id, c) => update('contentItems', arr => arr.map(x => x.id === id ? { ...x, ...c } : x)), [update])
+  const deleteContentItem = useCallback((id) => update('contentItems', arr => arr.filter(x => x.id !== id)), [update])
+
   // Portfolio
   const updatePortfolio = useCallback((p) => set('portfolio', p), [set])
 
@@ -197,6 +214,9 @@ export function useStore() {
     addReminder, updateReminder, deleteReminder, toggleReminder,
     addHabit, updateHabit, deleteHabit, toggleHabit,
     addNote, updateNote, deleteNote,
+    addProject, updateProject, deleteProject,
+    addIdea, deleteIdea,
+    addContentItem, updateContentItem, deleteContentItem,
     updatePortfolio,
     getEventsForDate,
   }

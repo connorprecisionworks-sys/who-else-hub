@@ -1,0 +1,24 @@
+.wrap { padding: 28px; }
+.bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; }
+.addBar { display: flex; gap: 8px; margin-bottom: 20px; }
+.addInput { flex: 1; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--r-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--surface); }
+.addInput:focus { outline: none; border-color: var(--border2); }
+.addBtn { padding: 8px 18px; border: none; border-radius: var(--r-sm); background: var(--accent); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; }
+.addBtn:hover { opacity: 0.8; }
+.addBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.board { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; min-height: 300px; }
+.column { background: var(--accent-soft); border-radius: var(--r); padding: 10px; display: flex; flex-direction: column; }
+.colHead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding: 0 4px; }
+.colLabel { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--t2); font-family: 'DM Mono', monospace; }
+.colCount { font-size: 11px; color: var(--t3); font-family: 'DM Mono', monospace; background: var(--surface); padding: 1px 7px; border-radius: 10px; }
+.colBody { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 10px; }
+.cardTitle { font-size: 13px; line-height: 1.4; margin-bottom: 8px; }
+.cardActions { display: flex; gap: 4px; }
+.moveBtn { width: 26px; height: 24px; border: 1px solid var(--border); border-radius: var(--r-sm); background: transparent; color: var(--t2); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+.moveBtn:hover { background: var(--accent-soft); color: var(--text); }
+.removeBtn { width: 26px; height: 24px; border: 1px solid var(--border); border-radius: var(--r-sm); background: transparent; color: var(--t3); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; margin-left: auto; }
+.removeBtn:hover { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+@media (max-width: 768px) { .wrap { padding: 16px; } .board { grid-template-columns: 1fr; } }
+@media (min-width: 769px) and (max-width: 1060px) { .board { grid-template-columns: repeat(3, 1fr); } }

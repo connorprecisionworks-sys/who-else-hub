@@ -1,0 +1,75 @@
+.wrap { padding: 28px; }
+.bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 10px; }
+.title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; }
+.secLabel { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--t3); font-family: 'DM Mono', monospace; padding: 12px 0 8px; }
+
+/* Metrics bar */
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.metric { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 16px; }
+.metricLabel { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--t3); font-family: 'DM Mono', monospace; margin-bottom: 6px; }
+.metricValue { font-size: 24px; font-weight: 500; letter-spacing: -0.02em; }
+
+/* Agent table */
+.table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+.table th { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--t3); font-family: 'DM Mono', monospace; padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+.table td { padding: 10px; font-size: 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.table tr:hover td { background: var(--accent-soft); }
+.agentName { font-weight: 500; }
+.agentType { font-size: 12px; color: var(--t2); font-family: 'DM Mono', monospace; }
+
+/* Status pills */
+.pill { display: inline-block; font-size: 11px; font-family: 'DM Mono', monospace; padding: 2px 10px; border-radius: 10px; font-weight: 500; }
+.pillRunning { background: #dcfce7; color: #166534; }
+.pillPaused { background: #fef3c7; color: #92400e; }
+.pillError { background: #fee2e2; color: #991b1b; }
+.pillDone { background: #dbeafe; color: #1e3a8a; }
+.pillFailed { background: #fee2e2; color: #991b1b; }
+.pillSuccess { background: #dcfce7; color: #166534; }
+
+/* Action buttons */
+.actions { display: flex; gap: 4px; }
+.actBtn { padding: 4px 10px; border: 1px solid var(--border); border-radius: var(--r-sm); background: transparent; color: var(--t2); font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer; }
+.actBtn:hover { background: var(--accent-soft); color: var(--text); }
+.actBtnRun { border-color: #2d9e63; color: #2d9e63; }
+.actBtnRun:hover { background: #dcfce7; }
+
+/* Activity log */
+.logTable { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+.logTable th { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--t3); font-family: 'DM Mono', monospace; padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+.logTable td { padding: 8px 10px; font-size: 13px; border-bottom: 1px solid var(--border); }
+.logTime { font-size: 12px; font-family: 'DM Mono', monospace; color: var(--t2); white-space: nowrap; }
+
+/* Inline edit panel */
+.editPanel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 16px; margin-top: 8px; }
+.editPanel textarea { width: 100%; min-height: 60px; border: 1px solid var(--border); border-radius: var(--r-sm); padding: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; resize: vertical; margin-bottom: 8px; }
+.editPanel label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--t3); font-family: 'DM Mono', monospace; display: block; margin-bottom: 4px; }
+.editSave { padding: 6px 14px; border: none; border-radius: var(--r-sm); background: var(--accent); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; margin-right: 6px; }
+.editSave:hover { opacity: 0.8; }
+.editCancel { padding: 6px 14px; border: 1px solid var(--border); border-radius: var(--r-sm); background: transparent; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; }
+
+/* Add agent form */
+.form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 20px; }
+.formGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.formField { margin-bottom: 12px; }
+.formLabel { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--t3); font-family: 'DM Mono', monospace; display: block; margin-bottom: 4px; }
+.formInput { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--r-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--bg); }
+.formInput:focus { outline: none; border-color: var(--border2); }
+.formTextarea { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--r-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; resize: vertical; min-height: 60px; background: var(--bg); }
+.formTextarea:focus { outline: none; border-color: var(--border2); }
+.formSelect { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--r-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--bg); }
+.submitBtn { padding: 8px 20px; border: none; border-radius: var(--r-sm); background: var(--accent); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; cursor: pointer; }
+.submitBtn:hover { opacity: 0.8; }
+.submitBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* States */
+.loading { color: var(--t3); font-size: 14px; padding: 20px 0; }
+.error { color: #dc2626; font-size: 13px; padding: 8px 0; }
+.empty { color: var(--t3); font-size: 14px; padding: 20px 0; }
+
+@media (max-width: 768px) {
+  .wrap { padding: 16px; }
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+  .table, .logTable { font-size: 13px; }
+  .formGrid { grid-template-columns: 1fr; }
+  .table th:nth-child(5), .table td:nth-child(5) { display: none; }
+}

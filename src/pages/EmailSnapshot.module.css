@@ -1,0 +1,34 @@
+.wrap { padding: 28px; }
+.bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; }
+.refreshBtn { padding: 6px 14px; border: 1px solid var(--border2); border-radius: var(--r-sm); background: transparent; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; }
+.refreshBtn:hover { background: var(--accent-soft); }
+.refreshBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+.countCard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 20px; display: inline-block; margin-bottom: 20px; }
+.countLabel { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--t3); font-family: 'DM Mono', monospace; margin-bottom: 6px; }
+.countValue { font-size: 32px; font-weight: 500; letter-spacing: -0.02em; }
+.secLabel { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--t3); font-family: 'DM Mono', monospace; padding: 12px 0 8px; }
+.loading { color: var(--t3); font-size: 14px; }
+.empty { color: var(--t3); font-size: 14px; }
+.emailList { border-top: 1px solid var(--border); }
+.emailRow { display: grid; grid-template-columns: 160px 1fr 100px; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: center; }
+.emailFrom { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.emailSubject { font-size: 13px; color: var(--t2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.emailDate { font-size: 11px; color: var(--t3); font-family: 'DM Mono', monospace; text-align: right; }
+.draftBar { display: flex; gap: 8px; margin-bottom: 12px; }
+.draftInput { flex: 1; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--r-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--surface); }
+.draftInput:focus { outline: none; border-color: var(--border2); }
+.draftBtn { padding: 8px 18px; border: none; border-radius: var(--r-sm); background: var(--accent); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; }
+.draftBtn:hover { opacity: 0.8; }
+.draftBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.draftOutput { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 16px; margin-top: 8px; }
+.draftHead { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--cn); font-family: 'DM Mono', monospace; margin-bottom: 8px; }
+.draftBody { font-size: 14px; line-height: 1.6; white-space: pre-wrap; font-family: 'DM Sans', sans-serif; margin: 0; }
+.copyBtn { margin-top: 10px; padding: 5px 14px; border: 1px solid var(--border); border-radius: var(--r-sm); background: transparent; font-size: 12px; font-family: 'DM Sans', sans-serif; cursor: pointer; color: var(--t2); }
+.copyBtn:hover { background: var(--accent-soft); }
+.error { color: #dc2626; font-size: 13px; margin-top: 6px; }
+.setupNotice { background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--r); padding: 16px; margin-bottom: 20px; }
+.setupHead { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: #92400e; font-family: 'DM Mono', monospace; margin-bottom: 6px; }
+.setupText { font-size: 13px; color: #78350f; line-height: 1.5; margin: 0 0 6px; }
+.setupError { font-size: 12px; color: #dc2626; font-family: 'DM Mono', monospace; margin: 0; }
+@media (max-width: 768px) { .wrap { padding: 16px; } .emailRow { grid-template-columns: 1fr; } .draftBar { flex-direction: column; } }

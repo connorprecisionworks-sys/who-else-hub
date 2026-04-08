@@ -4,13 +4,20 @@
 .logoBadge { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; background: var(--accent); color: #fff; padding: 4px 8px; border-radius: 4px; letter-spacing: 0.04em; }
 .logoBadgeSm { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; background: var(--accent); color: #fff; padding: 3px 7px; border-radius: 4px; }
 .logoText { font-size: 13px; font-weight: 500; }
-.navItems { display: flex; flex-direction: column; gap: 1px; padding: 0 8px; }
+.navItems { display: flex; flex-direction: column; gap: 1px; padding: 0 8px; overflow-y: auto; max-height: calc(100vh - 140px); }
 .navBtn { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border: none; border-radius: 6px; background: transparent; color: var(--t2); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; cursor: pointer; text-decoration: none; width: 100%; transition: all 0.12s; }
 .navBtn:hover { background: var(--accent-soft); color: var(--text); }
 .navBtnActive { background: var(--accent-soft) !important; color: var(--text) !important; font-weight: 500; }
 .navBtn svg { flex-shrink: 0; opacity: 0.55; }
 .navBtnActive svg { opacity: 1; }
-.sidebarFooter { padding: 16px; }
+.sidebarFooter { padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 8px; }
+.backupRow { display: flex; align-items: center; }
+.backupStatus { font-size: 10px; font-family: 'DM Mono', monospace; color: var(--t3); }
+.backupWarn { color: #b45309; }
+.backupBtns { display: flex; gap: 4px; }
+.footerBtn { display: flex; align-items: center; gap: 5px; padding: 4px 8px; border: 1px solid var(--border); border-radius: var(--r-sm); background: transparent; color: var(--t2); font-family: 'DM Sans', sans-serif; font-size: 11px; cursor: pointer; }
+.footerBtn:hover { background: var(--accent-soft); color: var(--text); }
+.toast { font-size: 10px; font-family: 'DM Mono', monospace; color: var(--we-d); padding: 3px 0; }
 .areaPips { display: flex; gap: 5px; }
 .pip { display: inline-block; width: 7px; height: 7px; border-radius: 50%; }
 .mobHeader { display: none; position: fixed; top: 0; left: 0; right: 0; height: 52px; background: var(--surface); border-bottom: 1px solid var(--border); align-items: center; justify-content: space-between; padding: 0 16px; z-index: 100; }
@@ -22,7 +29,7 @@
 .addMenuHead { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--t3); padding: 12px 16px 6px; font-family: 'DM Mono', monospace; }
 .addMenu button { padding: 11px 16px; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); cursor: pointer; text-align: left; border-top: 1px solid var(--border); }
 .addMenu button:hover { background: var(--accent-soft); }
-.main { margin-left: 200px; min-height: 100vh; }
+.main { margin-left: 200px; min-height: 100vh; overflow-x: hidden; }
 .botNav { display: none; position: fixed; bottom: 0; left: 0; right: 0; height: 62px; background: var(--surface); border-top: 1px solid var(--border); z-index: 50; grid-template-columns: repeat(5,1fr); align-items: center; }
 .botBtn { display: flex; flex-direction: column; align-items: center; gap: 3px; border: none; background: transparent; color: var(--t3); cursor: pointer; padding: 8px 4px; font-family: 'DM Sans', sans-serif; font-size: 10px; text-decoration: none; transition: color 0.12s; }
 .botBtnActive { color: var(--accent) !important; }

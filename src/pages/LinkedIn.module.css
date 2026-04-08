@@ -1,4 +1,4 @@
-.wrap { padding: 28px; max-width: 860px; }
+.wrap { padding: 28px; width: 100%; }
 
 .header {
   display: flex;
